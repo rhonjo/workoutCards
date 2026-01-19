@@ -1,5 +1,6 @@
 .app-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -29,7 +30,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
+  margin-bottom: 2rem;
 }
 
 .card {
@@ -99,8 +101,13 @@
   line-height: 1.4;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .new-exercises-btn {
-  margin-top: 2rem;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background-color: #6366f1;
