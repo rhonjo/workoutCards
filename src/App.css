@@ -104,20 +104,178 @@
 .button-container {
   display: flex;
   justify-content: center;
+  gap: 1rem;
   width: 100%;
 }
 
-.new-exercises-btn {
+.new-exercises-btn,
+.view-all-btn {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #6366f1;
-  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.25s;
 }
 
+.new-exercises-btn {
+  background-color: #6366f1;
+  color: white;
+}
+
 .new-exercises-btn:hover {
   background-color: #4f46e5;
+}
+
+.view-all-btn {
+  background-color: #059669;
+  color: white;
+}
+
+.view-all-btn:hover {
+  background-color: #047857;
+}
+.cards-container.all-exercises {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .cards-container.all-exercises {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+  
+  .button-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .new-exercises-btn,
+  .view-all-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+.back-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  max-width: 1200px;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-button:hover {
+  background-color: #4b5563;
+}
+/* Clickable cards */
+.card.clickable {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card.clickable:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Edit exercise view */
+.edit-exercise-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 800px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.edit-card-preview {
+  flex: 0 0 280px;
+}
+
+.edit-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.form-input,
+.form-select {
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.save-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #059669;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+
+.save-button:hover {
+  background-color: #047857;
+}
+
+/* Responsive design for edit view */
+@media (max-width: 768px) {
+  .edit-exercise-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-card-preview {
+    flex: none;
+  }
+  
+  .edit-form {
+    width: 100%;
+    max-width: 320px;
+  }
 }

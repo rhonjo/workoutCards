@@ -4,11 +4,15 @@ import { getDifficultyLabel, getDifficultyColor } from '../utils/exerciseUtils'
 
 interface ExerciseCardProps {
   exercise: Exercise
+  onClick?: () => void
 }
 
-const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
+const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onClick }) => {
   return (
-    <div className="card">
+    <div 
+      className={`card ${onClick ? 'clickable' : ''}`} 
+      onClick={onClick}
+    >
       <div className="card-header">
         <span 
           className="difficulty-badge" 
