@@ -1,0 +1,476 @@
+{
+  "exercises": {
+    "lowerBody": [
+      {
+        "id": 1,
+        "name": "Bodyweight Squat",
+        "difficulty": 1,
+        "repsTime": "12–20 reps | 40s",
+        "cue": "Stand → sit back → stand tall"
+      },
+      {
+        "id": 2,
+        "name": "Pulse Squat",
+        "difficulty": 2,
+        "repsTime": "15–25 pulses | 40s",
+        "cue": "Squat hold → small up/down"
+      },
+      {
+        "id": 3,
+        "name": "Jump Squat",
+        "difficulty": 3,
+        "repsTime": "8–15 reps | 30s",
+        "cue": "Squat → jump → land soft"
+      },
+      {
+        "id": 4,
+        "name": "Sumo Squat",
+        "difficulty": 1,
+        "repsTime": "12–20 reps | 40s",
+        "cue": "Wide stance → squat down"
+      },
+      {
+        "id": 5,
+        "name": "Narrow-Stance Squat",
+        "difficulty": 2,
+        "repsTime": "12–18 reps | 40s",
+        "cue": "Feet together → squat"
+      },
+      {
+        "id": 6,
+        "name": "Reverse Lunge",
+        "difficulty": 1,
+        "repsTime": "10 each leg | 40s",
+        "cue": "Step back → drop knee"
+      },
+      {
+        "id": 7,
+        "name": "Forward Lunge",
+        "difficulty": 1,
+        "repsTime": "10 each leg | 40s",
+        "cue": "Step forward → bend knees"
+      },
+      {
+        "id": 8,
+        "name": "Walking Lunge",
+        "difficulty": 2,
+        "repsTime": "20 steps | 45s",
+        "cue": "Lunge → step through"
+      },
+      {
+        "id": 9,
+        "name": "Curtsy Lunge",
+        "difficulty": 2,
+        "repsTime": "10 each leg | 40s",
+        "cue": "Step back diagonal"
+      },
+      {
+        "id": 10,
+        "name": "Bulgarian Split Squat",
+        "difficulty": 3,
+        "repsTime": "8–12 each leg | 40s",
+        "cue": "Rear foot elevated"
+      },
+      {
+        "id": 11,
+        "name": "Wall Sit",
+        "difficulty": 2,
+        "repsTime": "30–60s hold",
+        "cue": "Back flat → knees 90°"
+      },
+      {
+        "id": 12,
+        "name": "Single-Leg Squat",
+        "difficulty": 3,
+        "repsTime": "6–10 each leg",
+        "cue": "One leg → controlled squat"
+      },
+      {
+        "id": 13,
+        "name": "Glute Bridge",
+        "difficulty": 1,
+        "repsTime": "15–25 reps | 40s",
+        "cue": "On back → hips up"
+      },
+      {
+        "id": 14,
+        "name": "Single-Leg Glute Bridge",
+        "difficulty": 2,
+        "repsTime": "10 each leg | 40s",
+        "cue": "One foot planted"
+      },
+      {
+        "id": 15,
+        "name": "Calf Raise",
+        "difficulty": 1,
+        "repsTime": "20–30 reps | 40s",
+        "cue": "Heels lift up"
+      },
+      {
+        "id": 16,
+        "name": "Single-Leg Calf Raise",
+        "difficulty": 2,
+        "repsTime": "12–20 each leg",
+        "cue": "Balance → raise heel"
+      }
+    ],
+    "upperBody": [
+      {
+        "id": 17,
+        "name": "Push-Up",
+        "difficulty": 1,
+        "repsTime": "8–15 reps | 40s",
+        "cue": "Straight body → chest down"
+      },
+      {
+        "id": 18,
+        "name": "Knee Push-Up",
+        "difficulty": 1,
+        "repsTime": "10–20 reps",
+        "cue": "Knees down"
+      },
+      {
+        "id": 19,
+        "name": "Wide Push-Up",
+        "difficulty": 2,
+        "repsTime": "8–15 reps",
+        "cue": "Hands wide"
+      },
+      {
+        "id": 20,
+        "name": "Diamond Push-Up",
+        "difficulty": 3,
+        "repsTime": "6–12 reps",
+        "cue": "Hands form diamond"
+      },
+      {
+        "id": 21,
+        "name": "Incline Push-Up",
+        "difficulty": 1,
+        "repsTime": "12–20 reps",
+        "cue": "Hands elevated"
+      },
+      {
+        "id": 22,
+        "name": "Decline Push-Up",
+        "difficulty": 3,
+        "repsTime": "6–12 reps",
+        "cue": "Feet elevated"
+      },
+      {
+        "id": 23,
+        "name": "Pike Push-Up",
+        "difficulty": 3,
+        "repsTime": "6–10 reps",
+        "cue": "Hips high → head down"
+      },
+      {
+        "id": 24,
+        "name": "Shoulder Taps",
+        "difficulty": 2,
+        "repsTime": "20 taps | 40s",
+        "cue": "Plank → tap shoulders"
+      },
+      {
+        "id": 25,
+        "name": "Arm Circles",
+        "difficulty": 1,
+        "repsTime": "20 forward / 20 back",
+        "cue": "Arms extended"
+      },
+      {
+        "id": 26,
+        "name": "Plank Up-Downs",
+        "difficulty": 2,
+        "repsTime": "10–15 reps | 40s",
+        "cue": "Elbow plank ↔ push-up"
+      },
+      {
+        "id": 27,
+        "name": "Tricep Dips (Floor)",
+        "difficulty": 2,
+        "repsTime": "10–15 reps",
+        "cue": "Hands behind → bend elbows"
+      }
+    ],
+    "core": [
+      {
+        "id": 28,
+        "name": "Plank",
+        "difficulty": 1,
+        "repsTime": "30–60s",
+        "cue": "Straight line body"
+      },
+      {
+        "id": 29,
+        "name": "Side Plank",
+        "difficulty": 2,
+        "repsTime": "20–45s each side",
+        "cue": "On one elbow"
+      },
+      {
+        "id": 30,
+        "name": "Plank Shoulder Taps",
+        "difficulty": 2,
+        "repsTime": "20 taps",
+        "cue": "Minimize hip sway"
+      },
+      {
+        "id": 31,
+        "name": "Mountain Climbers",
+        "difficulty": 2,
+        "repsTime": "40s",
+        "cue": "Knees drive in"
+      },
+      {
+        "id": 32,
+        "name": "Bicycle Crunch",
+        "difficulty": 2,
+        "repsTime": "20 reps | 40s",
+        "cue": "Elbow to knee"
+      },
+      {
+        "id": 33,
+        "name": "Russian Twist",
+        "difficulty": 2,
+        "repsTime": "20 twists",
+        "cue": "Lean back → rotate"
+      },
+      {
+        "id": 34,
+        "name": "Leg Raises",
+        "difficulty": 2,
+        "repsTime": "10–15 reps",
+        "cue": "Legs straight up/down"
+      },
+      {
+        "id": 35,
+        "name": "Flutter Kicks",
+        "difficulty": 2,
+        "repsTime": "40s",
+        "cue": "Small fast kicks"
+      },
+      {
+        "id": 36,
+        "name": "Hollow Body Hold",
+        "difficulty": 3,
+        "repsTime": "20–45s",
+        "cue": "Banana shape"
+      },
+      {
+        "id": 37,
+        "name": "V-Ups",
+        "difficulty": 3,
+        "repsTime": "8–15 reps",
+        "cue": "Hands to toes"
+      },
+      {
+        "id": 38,
+        "name": "Sit-Ups",
+        "difficulty": 1,
+        "repsTime": "12–20 reps",
+        "cue": "Full torso lift"
+      },
+      {
+        "id": 39,
+        "name": "Heel Touches",
+        "difficulty": 1,
+        "repsTime": "30–40 touches",
+        "cue": "Side crunch"
+      },
+      {
+        "id": 40,
+        "name": "Dead Bug",
+        "difficulty": 1,
+        "repsTime": "10 each side",
+        "cue": "Opposite arm/leg"
+      }
+    ],
+    "fullBody": [
+      {
+        "id": 41,
+        "name": "Burpees",
+        "difficulty": 3,
+        "repsTime": "8–15 reps | 40s",
+        "cue": "Squat → plank → jump"
+      },
+      {
+        "id": 42,
+        "name": "Half Burpees",
+        "difficulty": 2,
+        "repsTime": "10–20 reps",
+        "cue": "No jump"
+      },
+      {
+        "id": 43,
+        "name": "Squat to Reach",
+        "difficulty": 1,
+        "repsTime": "15–20 reps",
+        "cue": "Squat → arms up"
+      },
+      {
+        "id": 44,
+        "name": "Inchworm",
+        "difficulty": 2,
+        "repsTime": "8–12 reps",
+        "cue": "Walk hands out/in"
+      },
+      {
+        "id": 45,
+        "name": "Bear Crawl",
+        "difficulty": 3,
+        "repsTime": "30–45s",
+        "cue": "Knees hover"
+      },
+      {
+        "id": 46,
+        "name": "Crab Walk",
+        "difficulty": 2,
+        "repsTime": "30–45s",
+        "cue": "Face up crawl"
+      },
+      {
+        "id": 47,
+        "name": "Spiderman Plank",
+        "difficulty": 3,
+        "repsTime": "30–40s",
+        "cue": "Knee to elbow"
+      },
+      {
+        "id": 48,
+        "name": "Plank Jacks",
+        "difficulty": 2,
+        "repsTime": "30–40s",
+        "cue": "Jump feet out/in"
+      },
+      {
+        "id": 49,
+        "name": "Squat Thrusts",
+        "difficulty": 2,
+        "repsTime": "15–20 reps",
+        "cue": "Squat → plank"
+      },
+      {
+        "id": 50,
+        "name": "Jumping Lunges",
+        "difficulty": 3,
+        "repsTime": "20 total | 40s",
+        "cue": "Switch legs mid-air"
+      }
+    ],
+    "cardioPlyo": [
+      {
+        "id": 51,
+        "name": "Jumping Jacks",
+        "difficulty": 1,
+        "repsTime": "40–60s",
+        "cue": ""
+      },
+      {
+        "id": 52,
+        "name": "High Knees",
+        "difficulty": 2,
+        "repsTime": "30–45s",
+        "cue": ""
+      },
+      {
+        "id": 53,
+        "name": "Butt Kicks",
+        "difficulty": 1,
+        "repsTime": "40s",
+        "cue": ""
+      },
+      {
+        "id": 54,
+        "name": "Skaters",
+        "difficulty": 2,
+        "repsTime": "40s",
+        "cue": ""
+      },
+      {
+        "id": 55,
+        "name": "Broad Jumps",
+        "difficulty": 3,
+        "repsTime": "6–10 reps",
+        "cue": ""
+      },
+      {
+        "id": 56,
+        "name": "Tuck Jumps",
+        "difficulty": 3,
+        "repsTime": "8–12 reps",
+        "cue": ""
+      },
+      {
+        "id": 57,
+        "name": "Fast Feet",
+        "difficulty": 2,
+        "repsTime": "30–40s",
+        "cue": ""
+      },
+      {
+        "id": 58,
+        "name": "Power Knees",
+        "difficulty": 2,
+        "repsTime": "20 each side",
+        "cue": ""
+      },
+      {
+        "id": 59,
+        "name": "Side-to-Side Hops",
+        "difficulty": 2,
+        "repsTime": "40s",
+        "cue": ""
+      },
+      {
+        "id": 60,
+        "name": "Star Jumps",
+        "difficulty": 3,
+        "repsTime": "10–15 reps",
+        "cue": ""
+      }
+    ],
+    "mobilityBalance": [
+      {
+        "id": 61,
+        "name": "Hip Circles",
+        "difficulty": 1,
+        "repsTime": "10 each direction",
+        "cue": ""
+      },
+      {
+        "id": 62,
+        "name": "Standing Knee Raises",
+        "difficulty": 1,
+        "repsTime": "20 reps",
+        "cue": ""
+      },
+      {
+        "id": 63,
+        "name": "Single-Leg Balance Hold",
+        "difficulty": 1,
+        "repsTime": "30–45s each leg",
+        "cue": ""
+      },
+      {
+        "id": 64,
+        "name": "World's Greatest Stretch",
+        "difficulty": 1,
+        "repsTime": "5 each side",
+        "cue": ""
+      },
+      {
+        "id": 65,
+        "name": "Standing Toe Touch Reach",
+        "difficulty": 1,
+        "repsTime": "10–15 reps",
+        "cue": ""
+      }
+    ]
+  },
+  "difficultyLevels": {
+    "1": "Beginner",
+    "2": "Intermediate", 
+    "3": "Advanced"
+  }
+}
