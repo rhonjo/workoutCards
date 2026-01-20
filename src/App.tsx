@@ -127,68 +127,82 @@ function EditExerciseView({ exercise, onBack, onSave }: EditExerciseViewProps) {
     onSave(updatedExercise)
   }
 
+  const handleReset = () => {
+    setName(exercise.name)
+    setDifficulty(exercise.difficulty)
+    setRepsTime(exercise.repsTime)
+    setCue(exercise.cue)
+  }
+
   return (
     <>
-      <div className="back-button-container">
+      <div className="back-button-container edit-page-back">
         <button className="back-button" onClick={onBack}>
           ← Back
         </button>
       </div>
       <div className="edit-exercise-container">
-        <div className="edit-card-preview">
-          <ExerciseCard exercise={{ ...exercise, name, difficulty, repsTime, cue }} />
-        </div>
-        <div className="edit-form">
-          <div className="form-group">
-            <label htmlFor="name">Exercise Name:</label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-input"
-            />
+        <div className="edit-content">
+          <div className="edit-card-preview">
+            <ExerciseCard exercise={{ ...exercise, name, difficulty, repsTime, cue }} />
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="difficulty">Difficulty:</label>
-            <select
-              id="difficulty"
-              value={difficulty}
-              onChange={(e) => setDifficulty(Number(e.target.value))}
-              className="form-select"
-            >
-              <option value={1}>Beginner</option>
-              <option value={2}>Intermediate</option>
-              <option value={3}>Advanced</option>
-            </select>
+          <div className="edit-form">
+            <div className="form-group">
+              <label htmlFor="name">Exercise Name:</label>
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="difficulty">Difficulty:</label>
+              <select
+                id="difficulty"
+                value={difficulty}
+                onChange={(e) => setDifficulty(Number(e.target.value))}
+                className="form-select"
+              >
+                <option value={1}>Beginner</option>
+                <option value={2}>Intermediate</option>
+                <option value={3}>Advanced</option>
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="repsTime">Reps/Time:</label>
+              <input
+                id="repsTime"
+                type="text"
+                value={repsTime}
+                onChange={(e) => setRepsTime(e.target.value)}
+                className="form-input"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="cue">Exercise Cue:</label>
+              <input
+                id="cue"
+                type="text"
+                value={cue}
+                onChange={(e) => setCue(e.target.value)}
+                className="form-input"
+              />
+            </div>
+            
+            <div className="form-buttons">
+              <button className="reset-button" onClick={handleReset}>
+                Reset
+              </button>
+              <button className="save-button" onClick={handleSave}>
+                Save Changes
+              </button>
+            </div>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="repsTime">Reps/Time:</label>
-            <input
-              id="repsTime"
-              type="text"
-              value={repsTime}
-              onChange={(e) => setRepsTime(e.target.value)}
-              className="form-input"
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="cue">Exercise Cue:</label>
-            <input
-              id="cue"
-              type="text"
-              value={cue}
-              onChange={(e) => setCue(e.target.value)}
-              className="form-input"
-            />
-          </div>
-          
-          <button className="save-button" onClick={handleSave}>
-            Save Changes
-          </button>
         </div>
       </div>
     </>
