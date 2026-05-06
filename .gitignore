@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+ARCHITECTURE.md
+CONFIGURATION.md
+DATABASE_SETUP.md

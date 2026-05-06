@@ -1,16 +1,17 @@
 import type { Exercise } from '../types/Exercise'
 import exercisesData from '../../exercises.json'
 
-export const getAllExercises = (): Exercise[] => {
+export const getAllExercises = (userExercisesData?: any): Exercise[] => {
+  const dataSource = userExercisesData || exercisesData
   const allExercises: Exercise[] = []
-  Object.values(exercisesData.exercises).forEach(category => {
+  Object.values(dataSource.exercises).forEach((category: any) => {
     allExercises.push(...category)
   })
   return allExercises
 }
 
-export const getRandomExerciseByDifficulty = (difficulty: number): Exercise => {
-  const allExercises = getAllExercises()
+export const getRandomExerciseByDifficulty = (difficulty: number, userExercisesData?: any): Exercise => {
+  const allExercises = getAllExercises(userExercisesData)
   const exercisesByDifficulty = allExercises.filter(ex => ex.difficulty === difficulty)
   const randomIndex = Math.floor(Math.random() * exercisesByDifficulty.length)
   return exercisesByDifficulty[randomIndex]
