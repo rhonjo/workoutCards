@@ -3,7 +3,7 @@ import './App.css'
 import type { Exercise } from './types/Exercise'
 import type { User } from './types/User'
 import { getRandomExerciseByDifficulty, getAllExercises } from './utils/exerciseUtils'
-import { createUser, authenticateUser, updateUserExercise } from './utils/userUtils'
+import { createUser, authenticateUser, updateUserExercise, getUserExercises } from './utils/userUtils'
 import ExerciseCard from './components/ExerciseCard'
 import {
   Dialog,
@@ -28,6 +28,7 @@ function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const [showAuthWarningModal, setShowAuthWarningModal] = useState(false)
 
   const handleRandomExercises = () => {
     const userExercisesData = currentUser?.user_cards
@@ -41,6 +42,10 @@ function App() {
   }
 
   const handleViewAllExercises = () => {
+    if (!currentUser) {
+      setShowAuthWarningModal(true)
+      return
+    }
     const userExercisesData = currentUser?.user_cards
     const allExercises = getAllExercises(userExercisesData)
     const sortedExercises = allExercises.sort((a, b) => a.difficulty - b.difficulty)
@@ -66,10 +71,12 @@ function App() {
   }
 
   const handleBackToAllExercises = () => {
-    const userExercisesData = currentUser?.user_cards
+    // Always read fresh user_cards from the store so edits are reflected immediately
+    const freshUserCards = currentUser ? getUserExercises(currentUser.id) : null
+    const userExercisesData = freshUserCards ?? currentUser?.user_cards
     const allExercises = getAllExercises(userExercisesData)
     const sortedExercises = allExercises.sort((a, b) => a.difficulty - b.difficulty)
-    
+
     setSelectedExercises(sortedExercises)
     setViewMode('all')
     setEditingExercise(null)
@@ -79,9 +86,14 @@ function App() {
     if (currentUser) {
       const success = updateUserExercise(currentUser.id, updatedExercise.id, updatedExercise)
       if (success) {
-        console.log('Exercise updated successfully for user:', currentUser.displayName)
+        // Sync currentUser state with the updated in-memory user data
+        const freshUserCards = getUserExercises(currentUser.id)
+        if (freshUserCards) {
+          setCurrentUser(prev => prev ? { ...prev, user_cards: freshUserCards } : prev)
+        }
+        console.log('Exercise saved to account:', currentUser.displayName, '-', updatedExercise.name)
       } else {
-        console.error('Failed to update exercise')
+        console.error('Failed to save exercise')
       }
     }
     handleBackToAllExercises()
@@ -133,6 +145,10 @@ function App() {
 
   const handleLogout = () => {
     setCurrentUser(null)
+    setShowCards(false)
+    setViewMode('random')
+    setEditingExercise(null)
+    setSelectedExercises([])
     console.log('User logged out')
   }
 
@@ -246,6 +262,48 @@ function App() {
       )}
       {showLoginModal && (
         <LoginModal onClose={handleCloseLoginModal} onLogin={handleUserLogin} />
+      )}
+      {showAuthWarningModal && (
+        <Dialog
+          open={true}
+          onClose={() => setShowAuthWarningModal(false)}
+          maxWidth="xs"
+          fullWidth
+          slotProps={{ paper: { sx: { borderRadius: 2, p: 1 } } }}
+        >
+          <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight={600}>Login Required</Typography>
+            <IconButton onClick={() => setShowAuthWarningModal(false)} size="small" sx={{ color: 'grey.500' }}>
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Typography variant="body1" color="text.secondary">
+              You need to be logged in to view and edit exercise cards. Please log in or create an account to continue.
+            </Typography>
+          </DialogContent>
+          <DialogActions sx={{ px: 3, pb: 2, gap: 1 }}>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setShowAuthWarningModal(false)
+                setShowRegisterModal(true)
+              }}
+            >
+              Register
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setShowAuthWarningModal(false)
+                setShowLoginModal(true)
+              }}
+            >
+              Login
+            </Button>
+          </DialogActions>
+        </Dialog>
       )}
     </div>
   )
