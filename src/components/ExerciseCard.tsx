@@ -7,15 +7,25 @@ interface ExerciseCardProps {
   onClick?: () => void
 }
 
+const difficultyGradients: Record<number, string> = {
+  1: 'linear-gradient(90deg, #10b981, #34d399)',
+  2: 'linear-gradient(90deg, #f59e0b, #fcd34d)',
+  3: 'linear-gradient(90deg, #ef4444, #f87171)',
+}
+
 const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onClick }) => {
   return (
-    <div 
-      className={`card ${onClick ? 'clickable' : ''}`} 
+    <div
+      className={`card ${onClick ? 'clickable' : ''}`}
       onClick={onClick}
     >
+      <div
+        className="card-accent"
+        style={{ background: difficultyGradients[exercise.difficulty] ?? difficultyGradients[1] }}
+      />
       <div className="card-header">
-        <span 
-          className="difficulty-badge" 
+        <span
+          className="difficulty-badge"
           style={{ backgroundColor: getDifficultyColor(exercise.difficulty) }}
         >
           {getDifficultyLabel(exercise.difficulty)}
