@@ -2,6 +2,8 @@
 
 A workout companion app that surfaces randomised exercise cards by difficulty level. Users can browse the full exercise library, customise individual exercises, and save their edits to a personal account.
 
+> **Local-only accounts:** Registration, login, and saved exercise edits currently work only when running the app locally with `npm run dev`. Accounts are stored on that local machine and are not available on a deployed version.
+
 ---
 
 ## Features
@@ -23,7 +25,8 @@ A workout companion app that surfaces randomised exercise cards by difficulty le
 | UI components | Material UI (MUI) 7 |
 | Styling | CSS (glassmorphism, CSS custom properties) + MUI `sx` |
 | State | React `useState` (no external store) |
-| Data | `exercises.json` — static file, in-memory at runtime |
+| Backend | Node.js + Express API |
+| Data | `exercises.json` defaults; accounts and edits persist in `server/.data/users.json` |
 
 ---
 
@@ -51,6 +54,7 @@ The app will be available at `http://localhost:5173`.
 ```bash
 npm run server     # Run the local API (port 3001)
 npm run build      # Production build (output to dist/)
+npm test           # Run Vitest and React Testing Library tests
 npm run preview    # Preview the production build locally
 npm run lint       # Run ESLint
 ```
@@ -64,17 +68,21 @@ src/
   components/
     ExerciseCard.tsx      # Card UI with difficulty accent bar
     ...                   # Header, views, editor, and auth dialogs
+  App.tsx                 # Root component and application state
+  App.css                 # App-wide styles (dark theme, glassmorphism)
+  main.tsx                # React entry point, MUI theme
+  test/
+    setup.ts              # Testing Library setup
   types/
     Exercise.ts           # Exercise type definition
     User.ts               # User type definition
   utils/
     exerciseUtils.ts      # Exercise helpers (random draw, labels, colours)
     userUtils.ts          # API helpers (session, create, authenticate, update)
+    exerciseUtils.test.ts # Exercise utility tests
+App.test.tsx              # Application interaction tests
 server/
   index.js                # Local persistent API
-  App.tsx                 # Root component — all views and modals
-  App.css                 # App-wide styles (dark theme, glassmorphism)
-  main.tsx                # React entry point, MUI theme
 exercises.json            # Exercise data — categories, difficulties, cues
 ```
 
