@@ -49,6 +49,7 @@ The app will be available at `http://localhost:5173`.
 ### Other scripts
 
 ```bash
+npm run server     # Run the local API (port 3001)
 npm run build      # Production build (output to dist/)
 npm run preview    # Preview the production build locally
 npm run lint       # Run ESLint
@@ -62,12 +63,15 @@ npm run lint       # Run ESLint
 src/
   components/
     ExerciseCard.tsx      # Card UI with difficulty accent bar
+    ...                   # Header, views, editor, and auth dialogs
   types/
     Exercise.ts           # Exercise type definition
     User.ts               # User type definition
   utils/
     exerciseUtils.ts      # Exercise helpers (random draw, labels, colours)
-    userUtils.ts          # User helpers (create, authenticate, update)
+    userUtils.ts          # API helpers (session, create, authenticate, update)
+server/
+  index.js                # Local persistent API
   App.tsx                 # Root component — all views and modals
   App.css                 # App-wide styles (dark theme, glassmorphism)
   main.tsx                # React entry point, MUI theme
@@ -93,7 +97,7 @@ Each exercise has a `difficulty` of `1` (Beginner), `2` (Intermediate), or `3` (
 
 ## Notes
 
-**In-memory storage** — user accounts and exercise edits are stored in memory only. All data resets on page refresh. A backend integration would be required for persistence.
+**Persistent local storage** — the small Node API stores user accounts and exercise edits in `server/.data/users.json`. Passwords are salted and hashed with `scrypt`; plain-text passwords are never stored. The API runs on port `3001`, with Vite proxying `/api` requests.
 
 ---
 

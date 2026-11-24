@@ -25,5 +25,6 @@ dist-ssr
 ARCHITECTURE.md
 CONFIGURATION.md
 DATABASE_SETUP.md
+server/.data/
 .kiro/specs/forgot-password/.config.kiro
 .kiro/specs/forgot-password/requirements.md

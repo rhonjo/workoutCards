@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import type { Exercise } from './types/Exercise'
 import type { User } from './types/User'
 import { getRandomExerciseByDifficulty, getAllExercises } from './utils/exerciseUtils'
-import { createUser, authenticateUser, updateUserExercise, getUserExercises } from './utils/userUtils'
+import {
+  createUser,
+  authenticateUser,
+  updateUserExercise,
+  getUserExercises,
+  getSession,
+  logoutUser,
+} from './utils/userUtils'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import ExerciseCardsView from './components/ExerciseCardsView'
@@ -21,6 +28,10 @@ function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [showAuthWarningModal, setShowAuthWarningModal] = useState(false)
+
+  useEffect(() => {
+    getSession().then(setCurrentUser)
+  }, [])
 
   const handleRandomExercises = () => {
     const userExercisesData = currentUser?.user_cards
@@ -54,8 +65,8 @@ function App() {
     setViewMode('random')
   }
 
-  const handleBackToAllExercises = () => {
-    const freshUserCards = currentUser ? getUserExercises(currentUser.id) : null
+  const handleBackToAllExercises = async () => {
+    const freshUserCards = currentUser ? await getUserExercises(currentUser.id) : null
     const userExercisesData = freshUserCards ?? currentUser?.user_cards
     const allExercises = getAllExercises(userExercisesData)
     setSelectedExercises(allExercises.sort((a, b) => a.difficulty - b.difficulty))
@@ -68,11 +79,11 @@ function App() {
     setViewMode('edit')
   }
 
-  const handleSaveExercise = (updatedExercise: Exercise) => {
+  const handleSaveExercise = async (updatedExercise: Exercise) => {
     if (currentUser) {
-      const success = updateUserExercise(currentUser.id, updatedExercise.id, updatedExercise)
+      const success = await updateUserExercise(currentUser.id, updatedExercise.id, updatedExercise)
       if (success) {
-        const freshUserCards = getUserExercises(currentUser.id)
+        const freshUserCards = await getUserExercises(currentUser.id)
         if (freshUserCards) {
           setCurrentUser((previous) => previous ? { ...previous, user_cards: freshUserCards } : previous)
         }
@@ -81,12 +92,12 @@ function App() {
         console.error('Failed to save exercise')
       }
     }
-    handleBackToAllExercises()
+    await handleBackToAllExercises()
   }
 
-  const handleUserRegistration = (displayName: string, email: string, password: string) => {
+  const handleUserRegistration = async (displayName: string, email: string, password: string) => {
     try {
-      const newUser = createUser(displayName, email, password)
+      const newUser = await createUser(displayName, email, password)
       setCurrentUser(newUser)
       setShowRegisterModal(false)
       console.log('Registration successful:', { id: newUser.id, displayName: newUser.displayName, email: newUser.email })
@@ -96,9 +107,9 @@ function App() {
     }
   }
 
-  const handleUserLogin = (email: string, password: string) => {
+  const handleUserLogin = async (email: string, password: string) => {
     try {
-      const user = authenticateUser(email, password)
+      const user = await authenticateUser(email, password)
       if (user) {
         setCurrentUser(user)
         setShowLoginModal(false)
@@ -112,7 +123,8 @@ function App() {
     }
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logoutUser()
     setCurrentUser(null)
     setShowCards(false)
     setViewMode('random')

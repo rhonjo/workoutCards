@@ -1,59 +1,70 @@
 import type { User } from '../types/User'
-import exercisesData from '../../exercises.json'
 
-// Simple in-memory user storage
-let users: User[] = []
-let nextUserId = 1
+const apiRequest = async (url: string, options?: RequestInit) => {
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...options?.headers,
+    },
+  })
 
-export const createUser = (displayName: string, email: string, password: string): User => {
-  const userExercisesData = JSON.parse(JSON.stringify(exercisesData))
-
-  const newUser: User = {
-    id: nextUserId++,
-    displayName,
-    email,
-    password,
-    createdAt: new Date(),
-    user_cards: userExercisesData
+  if (!response.ok) {
+    const body = await response.json().catch(() => null)
+    throw new Error(body?.error || `Request failed (${response.status})`)
   }
 
-  users.push(newUser)
-  console.log('User created:', { id: newUser.id, displayName: newUser.displayName, email: newUser.email })
-  return newUser
+  if (response.status === 204) return null
+  return response.json()
 }
 
-export const getAllUsers = (): User[] => {
-  return users
-}
-
-export const findUserByEmail = (email: string): User | undefined => {
-  return users.find(user => user.email === email)
-}
-
-export const authenticateUser = (email: string, password: string): User | null => {
-  const user = findUserByEmail(email)
-  if (user && user.password === password) {
-    return user
+export const getSession = async (): Promise<User | null> => {
+  try {
+    return await apiRequest('/api/auth/session')
+  } catch {
+    return null
   }
-  return null
 }
 
-export const updateUserExercise = (userId: number, exerciseId: number, updatedExercise: any): boolean => {
-  const user = users.find(u => u.id === userId)
-  if (!user) return false
+export const createUser = async (displayName: string, email: string, password: string): Promise<User> =>
+  apiRequest('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ displayName, email, password }),
+  })
 
-  for (const category of Object.values(user.user_cards.exercises)) {
-    const exerciseIndex = (category as any[]).findIndex((ex: any) => ex.id === exerciseId)
-    if (exerciseIndex !== -1) {
-      (category as any[])[exerciseIndex] = { ...(category as any[])[exerciseIndex], ...updatedExercise }
-      console.log('Updated exercise for user', userId, ':', updatedExercise)
-      return true
-    }
+export const authenticateUser = async (email: string, password: string): Promise<User | null> => {
+  try {
+    return await apiRequest('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    })
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Invalid email or password.') return null
+    throw error
   }
-  return false
 }
 
-export const getUserExercises = (userId: number) => {
-  const user = users.find(u => u.id === userId)
-  return user ? user.user_cards : null
+export const logoutUser = async (): Promise<void> => {
+  await apiRequest('/api/auth/logout', { method: 'POST' })
+}
+
+export const updateUserExercise = async (
+  userId: number,
+  exerciseId: number,
+  updatedExercise: unknown,
+): Promise<boolean> => {
+  try {
+    await apiRequest(`/api/users/${userId}/exercises/${exerciseId}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedExercise),
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+export const getUserExercises = async (userId: number) => {
+  const user = await getSession()
+  return user?.id === userId ? user.user_cards : null
 }

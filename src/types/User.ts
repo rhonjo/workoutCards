@@ -4,7 +4,6 @@ export interface User {
   id: number
   displayName: string
   email: string
-  password: string
-  createdAt: Date
+  createdAt: string
   user_cards: ExerciseData
 }
