@@ -1,21 +1,13 @@
 import { Button, Typography } from '@mui/material'
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 import type { User } from '../types/User'
+import { darkOutlinedButtonSx } from './styles'
 
 interface HeaderProps {
   currentUser: User | null
   onLogin: () => void
   onRegister: () => void
   onLogout: () => void
-}
-
-export const darkOutlinedButtonSx = {
-  color: 'rgba(255,255,255,0.75)',
-  borderColor: 'rgba(255,255,255,0.18)',
-  '&:hover': {
-    borderColor: 'rgba(255,255,255,0.38)',
-    backgroundColor: 'rgba(255,255,255,0.06)',
-  },
 }
 
 export default function Header({ currentUser, onLogin, onRegister, onLogout }: HeaderProps) {

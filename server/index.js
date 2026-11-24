@@ -145,6 +145,16 @@ app.put('/api/users/:userId/exercises/:exerciseId', (req, res) => {
   }
 
   const exerciseId = Number(req.params.exerciseId)
+  const { name, difficulty, repsTime, cue } = req.body
+  if (
+    (name !== undefined && typeof name !== 'string') ||
+    (difficulty !== undefined && ![1, 2, 3].includes(difficulty)) ||
+    (repsTime !== undefined && typeof repsTime !== 'string') ||
+    (cue !== undefined && typeof cue !== 'string')
+  ) {
+    return res.status(400).json({ error: 'Invalid exercise update.' })
+  }
+
   const database = readDatabase()
   const user = database.users.find((item) => item.id === requestedUserId)
   if (!user) return res.status(404).json({ error: 'User not found.' })
@@ -152,7 +162,13 @@ app.put('/api/users/:userId/exercises/:exerciseId', (req, res) => {
   for (const exercises of Object.values(user.user_cards.exercises)) {
     const index = exercises.findIndex((exercise) => exercise.id === exerciseId)
     if (index !== -1) {
-      exercises[index] = { ...exercises[index], ...req.body }
+      exercises[index] = {
+        ...exercises[index],
+        ...(name !== undefined ? { name } : {}),
+        ...(difficulty !== undefined ? { difficulty } : {}),
+        ...(repsTime !== undefined ? { repsTime } : {}),
+        ...(cue !== undefined ? { cue } : {}),
+      }
       writeDatabase(database)
       return res.json(publicUser(user))
     }

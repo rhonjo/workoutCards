@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import type { Exercise } from '../types/Exercise'
 import ExerciseCard from './ExerciseCard'
-import { darkOutlinedButtonSx } from './Header'
+import { darkOutlinedButtonSx } from './styles'
 
 interface ExerciseCardsViewProps {
   exercises: Exercise[]

@@ -87,7 +87,6 @@ function App() {
         if (freshUserCards) {
           setCurrentUser((previous) => previous ? { ...previous, user_cards: freshUserCards } : previous)
         }
-        console.log('Exercise saved to account:', currentUser.displayName, '-', updatedExercise.name)
       } else {
         console.error('Failed to save exercise')
       }
@@ -100,7 +99,6 @@ function App() {
       const newUser = await createUser(displayName, email, password)
       setCurrentUser(newUser)
       setShowRegisterModal(false)
-      console.log('Registration successful:', { id: newUser.id, displayName: newUser.displayName, email: newUser.email })
     } catch (error) {
       console.error('Registration failed:', error)
       alert(`Registration failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
@@ -113,7 +111,6 @@ function App() {
       if (user) {
         setCurrentUser(user)
         setShowLoginModal(false)
-        console.log('Login successful:', { id: user.id, displayName: user.displayName, email: user.email })
       } else {
         alert('Invalid email or password. Please check your credentials and try again.')
       }
@@ -130,7 +127,6 @@ function App() {
     setViewMode('random')
     setEditingExercise(null)
     setSelectedExercises([])
-    console.log('User logged out')
   }
 
   return (
